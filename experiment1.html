@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 1: Acid Strength Determination</title>
+  <link rel="stylesheet" href="experiment1.css">
+</head>
+<body>
+  <header>
+    <h1>Experiment 1: Determine Strength of Strong Acid Using pH Metry</h1>
+  </header>
+
+  <section id="experiment">
+    <!-- Precautions Section -->
+    <div id="precautions">
+      <h2>Precautions:</h2>
+      <ul>
+        <li>Always wear protective gear, including gloves, goggles, and a lab coat.</li>
+        <li>Handle strong acids with care and avoid direct contact with skin.</li>
+        <li>Ensure proper ventilation when handling acids to avoid inhaling fumes.</li>
+        <li>In case of skin contact, rinse immediately with plenty of water and seek medical attention.</li>
+        <li>Dispose of all acid solutions properly, following the lab's disposal guidelines.</li>
+      </ul>
+      <button id="agree-button" onclick="showInstructions()">I Agree</button>
+    </div>
+
+    <!-- Instructions Section (Initially hidden) -->
+    <div id="instructions" style="display: none;">
+      <h2>Instructions:</h2>
+      <p>Follow the steps below to determine the strength of the acid using pH metry:</p>
+      <ol>
+        <li>Enter the volume of the acid (in mL).</li>
+        <li>Enter the concentration of the acid (in M).</li>
+        <li>Click the "Calculate" button to compute the pH of the solution based on the concentration.</li>
+      </ol>
+      <button id="finish-reading" onclick="showInputForm()">Finish Reading</button>
+    </div>
+
+    <!-- Experiment Form (Initially hidden) -->
+    <div id="experiment-form" style="display: none;">
+      <h3>Interactive Experiment</h3>
+      <form id="experimentForm">
+        <label for="acid-volume">Volume of Acid (mL):</label>
+        <input type="number" id="acid-volume" placeholder="Enter volume in mL" required><br><br>
+
+        <label for="acid-concentration">Concentration of Acid (M):</label>
+        <input type="number" id="acid-concentration" placeholder="Enter concentration in M" required><br><br>
+
+        <button type="button" class="calculate-btn" onclick="calculatePH()">Calculate</button>
+      </form>
+
+      <h3>Result:</h3>
+      <p id="result">After entering the values, press "Calculate" to determine the pH of the solution.</p>
+    </div>
+  </section>
+
+  <script>
+    // Function to show instructions after agreeing to precautions
+    function showInstructions() {
+      document.getElementById('precautions').style.display = 'none'; // Hide precautions
+      document.getElementById('instructions').style.display = 'block'; // Show instructions
+    }
+
+    // Function to show the input form after finishing reading instructions
+    function showInputForm() {
+      document.getElementById('instructions').style.display = 'none'; // Hide instructions
+      document.getElementById('experiment-form').style.display = 'block'; // Show input form
+    }
+
+    // Function to calculate the pH of the solution
+    function calculatePH() {
+      const volume = parseFloat(document.getElementById('acid-volume').value);
+      const concentration = parseFloat(document.getElementById('acid-concentration').value);
+
+      if (volume > 0 && concentration > 0) {
+        const pH = -Math.log10(concentration);
+        document.getElementById('result').textContent = `The pH of the solution is: ${pH.toFixed(2)}`;
+      } else {
+        document.getElementById('result').textContent = "Please enter valid values for volume and concentration.";
+      }
+    }
+  </script>
+</body>
+</html>

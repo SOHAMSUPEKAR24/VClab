@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 6: Bio-Ethanol Production Optimization</title>
+  <link rel="stylesheet" href="experiment6.css">
+</head>
+<body>
+  <header>
+    <h1>Experiment 6: Bio-Ethanol Production Optimization Using DOE</h1>
+  </header>
+
+  <!-- Precautions Section -->
+  <section id="precautions-section">
+    <h2>Precautions:</h2>
+    <ul>
+      <li>Ensure the use of correct and calibrated equipment for temperature, pH, and fermentation time measurements.</li>
+      <li>Handle the chemicals and biological materials with care, following all safety protocols.</li>
+      <li>Do not exceed the recommended range for any factor during the experiment.</li>
+      <li>Wear proper protective equipment (gloves, goggles, lab coat, etc.) throughout the experiment.</li>
+    </ul>
+    <button id="agree-btn">I Agree</button>
+  </section>
+
+  <!-- Instructions Section (Initially Hidden) -->
+  <section id="instructions-section" style="display: none;">
+    <h2>Instructions:</h2>
+    <p>Use the following parameters to optimize the bio-ethanol production:</p>
+    <ol>
+      <li>Adjust the temperature within the range of 30°C to 50°C.</li>
+      <li>Set the fermentation time between 12 and 48 hours.</li>
+      <li>Adjust the pH level between 4.5 and 7.0 for the optimal process.</li>
+    </ol>
+    <button id="start-experiment-btn" onclick="startExperiment()">Start Experiment</button>
+  </section>
+
+  <!-- Experiment Section (Initially Hidden) -->
+  <section id="experiment" style="display: none;">
+    <h2>Experiment in Progress</h2>
+    <p>Enter the following parameters to optimize bio-ethanol production:</p>
+    <ol>
+      <li>Temperature (°C): <input type="number" id="temperature" min="30" max="50" placeholder="Temperature in °C"></li>
+      <li>Fermentation Time (hours): <input type="number" id="fermentation-time" min="12" max="48" placeholder="Fermentation time in hours"></li>
+      <li>pH Level: <input type="number" id="ph-level" min="4.5" max="7.0" step="0.1" placeholder="pH level"></li>
+    </ol>
+    <button class="calculate-btn" onclick="calculateOptimization()">Calculate Optimization</button>
+    <p id="result"></p>
+  </section>
+
+  <script>
+    // Handle the agreement to precautions
+    document.getElementById('agree-btn').addEventListener('click', function() {
+      // Hide precautions and show instructions
+      document.getElementById('precautions-section').style.display = 'none';
+      document.getElementById('instructions-section').style.display = 'block';
+    });
+
+    // Start the experiment when the user clicks "Start Experiment"
+    function startExperiment() {
+      // Hide instructions and show experiment section
+      document.getElementById('instructions-section').style.display = 'none';
+      document.getElementById('experiment').style.display = 'block';
+    }
+
+    // Function to calculate bio-ethanol production optimization
+    function calculateOptimization() {
+      const temperature = parseFloat(document.getElementById('temperature').value);
+      const fermentationTime = parseFloat(document.getElementById('fermentation-time').value);
+      const phLevel = parseFloat(document.getElementById('ph-level').value);
+      
+      // Ensure valid inputs
+      if (temperature >= 30 && temperature <= 50 && fermentationTime >= 12 && fermentationTime <= 48 && phLevel >= 4.5 && phLevel <= 7.0) {
+        // Simple example formula for bio-ethanol yield
+        let ethanolYield = (temperature * 0.2) + (fermentationTime * 0.5) + (phLevel * 1.5);
+        
+        // Display result based on input values
+        document.getElementById('result').textContent = `Optimized Bio-Ethanol Yield: ${ethanolYield.toFixed(2)} L (liters)`;
+      } else {
+        document.getElementById('result').textContent = "Please enter valid values within the specified ranges.";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 4: Alkalinity of Water</title>
+  <link rel="stylesheet" href="experiment4.css">
+</head>
+<body>
+  <header>
+    <h1>Experiment 4: Determine Alkalinity of Water</h1>
+  </header>
+
+  <!-- Precautions Section -->
+  <section id="precautions-section">
+    <h2>Precautions:</h2>
+    <ul>
+      <li>Wear appropriate protective equipment (gloves, goggles, etc.).</li>
+      <li>Handle all chemicals with care.</li>
+      <li>Ensure accurate measurement of titrant volume and concentration.</li>
+      <li>Dispose of waste chemicals properly as per safety guidelines.</li>
+    </ul>
+    <button id="agree-btn">I Agree</button>
+  </section>
+
+  <!-- Instructions Section (Initially Hidden) -->
+  <section id="instructions-section" style="display: none;">
+    <h2>Instructions:</h2>
+    <p>Follow the steps below to determine the alkalinity of the water sample:</p>
+    <ol>
+      <li>Measure the titrant volume in milliliters (mL).</li>
+      <li>Measure the concentration of the titrant solution in moles per liter (M).</li>
+      <li>Use the formula: Alkalinity = Volume (mL) × Concentration (M) × 50 to calculate alkalinity.</li>
+    </ol>
+    <button id="start-experiment-btn" onclick="startExperiment()">Start Experiment</button>
+  </section>
+
+  <!-- Experiment Section (Initially Hidden) -->
+  <section id="experiment" style="display: none;">
+    <h2>Experiment in Progress</h2>
+    <p>Enter the details to calculate the alkalinity of the water:</p>
+    <ol>
+      <li>Enter titrant volume (mL): <input type="number" id="titrant-volume" placeholder="mL"></li>
+      <li>Enter titrant concentration (M): <input type="number" id="titrant-concentration" placeholder="M"></li>
+      <li>Press "Calculate" to determine alkalinity.</li>
+    </ol>
+    <button class="calculate-btn" onclick="calculateAlkalinity()">Calculate</button>
+    <p id="result"></p>
+  </section>
+
+  <script>
+    // Handle the agreement to precautions
+    document.getElementById('agree-btn').addEventListener('click', function() {
+      // Hide precautions and show instructions
+      document.getElementById('precautions-section').style.display = 'none';
+      document.getElementById('instructions-section').style.display = 'block';
+    });
+
+    // Start the experiment when the user clicks "Start Experiment"
+    function startExperiment() {
+      // Hide instructions and show experiment section
+      document.getElementById('instructions-section').style.display = 'none';
+      document.getElementById('experiment').style.display = 'block';
+    }
+
+    // Function to calculate alkalinity
+    function calculateAlkalinity() {
+      const volume = parseFloat(document.getElementById('titrant-volume').value);
+      const concentration = parseFloat(document.getElementById('titrant-concentration').value);
+      const alkalinity = volume * concentration * 50;
+
+      if (volume > 0 && concentration > 0) {
+        document.getElementById('result').textContent = `Alkalinity: ${alkalinity.toFixed(2)} mg/L`;
+      } else {
+        document.getElementById('result').textContent = "Please enter valid values for volume and concentration.";
+      }
+    }
+  </script>
+</body>
+</html>

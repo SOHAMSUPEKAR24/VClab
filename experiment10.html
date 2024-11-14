@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 10: Functional Group Identification Using IR Spectrum</title>
+  <link rel="stylesheet" href="experiment10.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Experiment 10: IR Spectrum Functional Group Identification</h1>
+  </header>
+
+  <!-- Precautions Section -->
+  <section id="precautions">
+    <h2>Precautions</h2>
+    <ul>
+      <li>Wear protective eyewear and gloves while handling samples.</li>
+      <li>Avoid direct contact with chemicals and solvents used.</li>
+      <li>Ensure IR spectrophotometer is calibrated properly.</li>
+      <li>Use a well-ventilated area to avoid inhaling any fumes.</li>
+    </ul>
+    <button onclick="showInstructions()">Continue</button>
+  </section>
+
+  <!-- Instructions Section -->
+  <section id="instructions" style="display: none;">
+    <h2>Instructions</h2>
+    <ol>
+      <li>Prepare your sample and place it in the IR spectrophotometer.</li>
+      <li>Record the spectrum and identify peaks from 1500 cm<sup>-1</sup> to 4000 cm<sup>-1</sup>.</li>
+      <li>Compare peaks with known functional groups to identify.</li>
+    </ol>
+    <button onclick="showExperiment()">Proceed to Experiment</button>
+  </section>
+
+  <!-- Experiment Section -->
+  <section id="experiment" style="display: none;">
+    <h2>IR Spectrum Analysis</h2>
+    <p>Enter observed wavenumber values to identify functional groups:</p>
+    <div class="input-container">
+      <input type="number" id="wavenumberInput" placeholder="Enter wavenumber (cm⁻¹)">
+      <button onclick="analyzeWavenumber()">Analyze</button>
+    </div>
+    <p id="result" class="highlight">Enter a value and click "Analyze" to see results.</p>
+    
+    <!-- Chart Container -->
+    <canvas id="irSpectrumChart" width="600" height="400"></canvas>
+    
+    <button onclick="resetExperiment()">Reset</button>
+  </section>
+
+  <script>
+    function showInstructions() {
+      document.getElementById('precautions').style.display = 'none';
+      document.getElementById('instructions').style.display = 'block';
+    }
+
+    function showExperiment() {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('experiment').style.display = 'block';
+      renderSpectrumChart();
+    }
+
+    // Render Chart.js for IR spectrum visualization
+    function renderSpectrumChart() {
+      const ctx = document.getElementById('irSpectrumChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [4000, 3500, 3000, 2500, 2000, 1500, 1000, 500],
+          datasets: [{
+            label: 'IR Spectrum',
+            data: [0, 5, 20, 15, 10, 18, 5, 0],
+            borderColor: '#6bc0e7',
+            backgroundColor: 'rgba(107, 192, 231, 0.2)',
+            pointRadius: 4,
+            pointHoverRadius: 7
+          }]
+        },
+        options: {
+          scales: {
+            x: {
+              title: { display: true, text: 'Wavenumber (cm⁻¹)', color: '#ffffff' }
+            },
+            y: {
+              title: { display: true, text: 'Absorbance', color: '#ffffff' }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return getFunctionalGroup(context.raw);
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function getFunctionalGroup(wavenumber) {
+      if (wavenumber >= 3200 && wavenumber <= 3600) return 'O-H Stretch: Hydroxyl Group';
+      if (wavenumber >= 1700 && wavenumber <= 1750) return 'C=O Stretch: Carbonyl Group';
+      if (wavenumber >= 2850 && wavenumber <= 3000) return 'C-H Stretch: Alkane Group';
+      if (wavenumber >= 3300 && wavenumber <= 3500) return 'N-H Stretch: Amine Group';
+      return 'No functional group identified';
+    }
+
+    function analyzeWavenumber() {
+      const wavenumber = document.getElementById('wavenumberInput').value;
+      const result = getFunctionalGroup(wavenumber);
+      document.getElementById('result').textContent = result;
+    }
+
+    function resetExperiment() {
+      document.getElementById('experiment').style.display = 'none';
+      document.getElementById('precautions').style.display = 'block';
+      document.getElementById('wavenumberInput').value = '';
+      document.getElementById('result').textContent = 'Enter a value and click "Analyze" to see results.';
+    }
+  </script>
+</body>
+</html>

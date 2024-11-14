@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electron Pair Repulsion Experiment</title>
+    <link rel="stylesheet" href="electron_pair_repulsion.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Electron Pair Repulsion (VSEPR Theory)</h1>
+
+        <section class="precautions">
+            <h3>Precautions:</h3>
+            <ul>
+                <li>Wear protective goggles and gloves.</li>
+                <li>Handle chemical models with care to avoid breakage.</li>
+            </ul>
+        </section>
+
+        <section class="instructions">
+            <h3>Instructions:</h3>
+            <p>Select the molecule and specify the number of bonding and lone pairs to calculate the electron pair geometry.</p>
+        </section>
+
+        <section class="experiment">
+            <h3>Start Experiment:</h3>
+            <button id="startExperiment">Start Experiment</button>
+
+            <div id="inputs" class="inputs">
+                <label for="moleculeType">Choose Molecule:</label>
+                <select id="moleculeType">
+                    <option value="h2o">Water (H2O)</option>
+                    <option value="co2">Carbon Dioxide (CO2)</option>
+                    <option value="nh3">Ammonia (NH3)</option>
+                </select>
+
+                <label for="bondingPairs">Number of Bonding Pairs:</label>
+                <input type="number" id="bondingPairs" placeholder="Enter number of bonding pairs" required>
+
+                <label for="lonePairs">Number of Lone Pairs:</label>
+                <input type="number" id="lonePairs" placeholder="Enter number of lone pairs" required>
+
+                <button id="submitExperiment">Submit</button>
+            </div>
+
+            <div id="result" class="result">
+                <p>Result: <span id="experimentResult"></span></p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById("startExperiment").addEventListener("click", function() {
+            document.getElementById("inputs").style.display = "block";
+        });
+
+        document.getElementById("submitExperiment").addEventListener("click", function() {
+            const moleculeType = document.getElementById("moleculeType").value;
+            const bondingPairs = document.getElementById("bondingPairs").value;
+            const lonePairs = document.getElementById("lonePairs").value;
+            let result = "";
+
+            // Determine geometry based on bonding and lone pairs
+            if (bondingPairs == 2 && lonePairs == 0) {
+                result = `${moleculeType} has a Linear geometry.`;
+            } else if (bondingPairs == 3 && lonePairs == 0) {
+                result = `${moleculeType} has a Trigonal Planar geometry.`;
+            } else if (bondingPairs == 4 && lonePairs == 0) {
+                result = `${moleculeType} has a Tetrahedral geometry.`;
+            } else if (bondingPairs == 3 && lonePairs == 1) {
+                result = `${moleculeType} has a Trigonal Pyramidal geometry.`;
+            } else {
+                result = "Geometry cannot be determined with given data.";
+            }
+
+            document.getElementById("experimentResult").textContent = result;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 5: Extraction of Lignin</title>
+  <link rel="stylesheet" href="experiment5.css">
+</head>
+<body>
+  <header>
+    <h1>Experiment 5: Extraction of Lignin from Lignocellulosic Biomass</h1>
+  </header>
+
+  <section id="experiment">
+    <!-- Precautions Section -->
+    <div id="precautions">
+      <h2>Precautions:</h2>
+      <ul>
+        <li>Always wear appropriate protective equipment such as gloves, goggles, and lab coat.</li>
+        <li>Work in a well-ventilated area or under a fume hood when handling NaOH solution.</li>
+        <li>Ensure that the heating process is done using a controlled heat source to avoid overheating.</li>
+        <li>Dispose of waste chemicals properly according to your institution’s guidelines.</li>
+        <li>Handle all chemicals with care and follow safety protocols for handling caustic solutions.</li>
+      </ul>
+      <button id="agree-button" onclick="showInstructions()">I Agree</button>
+    </div>
+
+    <!-- Instructions Section (Initially hidden) -->
+    <div id="instructions" style="display: none;">
+      <h2>Instructions:</h2>
+      <p>To begin lignin extraction, follow the steps below:</p>
+      <ol>
+        <li>Place 20g of biomass sample into the reactor.</li>
+        <li>Add 200mL of 10% NaOH solution.</li>
+        <li>Heat the mixture at 90°C for 2 hours.</li>
+        <li>Cool, filter, and collect lignin. Record the yield.</li>
+      </ol>
+      <button id="finish-reading" onclick="showInputForm()">Finish Reading</button>
+    </div>
+
+    <!-- Interactive Experiment Form (Initially hidden) -->
+    <div id="experiment-form" style="display: none;">
+      <h3>Interactive Experiment</h3>
+      <form id="experimentForm">
+        <label for="biomass-weight">Biomass weight (g):</label>
+        <input type="number" id="biomass-weight" placeholder="Enter biomass weight in grams" required><br><br>
+
+        <label for="naoh-volume">NaOH solution volume (mL):</label>
+        <input type="number" id="naoh-volume" placeholder="Enter NaOH solution volume" required><br><br>
+
+        <label for="heating-time">Heating time (minutes):</label>
+        <input type="number" id="heating-time" placeholder="Enter heating time in minutes" required><br><br>
+
+        <label for="extraction-yield">Estimated Lignin Yield (%):</label>
+        <input type="number" id="extraction-yield" placeholder="Enter yield percentage" required><br><br>
+
+        <button type="button" onclick="performExperiment()">Start Experiment</button>
+      </form>
+
+      <h3>Experiment Results</h3>
+      <p id="result">After completing the steps above, input the yield to calculate the amount of lignin extracted.</p>
+      <p id="calculated-result"></p>
+    </div>
+  </section>
+
+  <script>
+    // Function to show instructions after agreeing to precautions
+    function showInstructions() {
+      document.getElementById('precautions').style.display = 'none'; // Hide precautions
+      document.getElementById('instructions').style.display = 'block'; // Show instructions
+    }
+
+    // Function to show the input form after finishing reading the instructions
+    function showInputForm() {
+      document.getElementById('instructions').style.display = 'none'; // Hide instructions
+      document.getElementById('experiment-form').style.display = 'block'; // Show input form
+    }
+
+    // Function to perform the experiment and calculate lignin extraction
+    function performExperiment() {
+      // Get user input for biomass weight, NaOH volume, heating time, and lignin yield
+      const biomassWeight = parseFloat(document.getElementById('biomass-weight').value);
+      const naohVolume = parseFloat(document.getElementById('naoh-volume').value);
+      const heatingTime = parseFloat(document.getElementById('heating-time').value);
+      const yieldPercentage = parseFloat(document.getElementById('extraction-yield').value);
+
+      // Validate the input
+      if (isNaN(biomassWeight) || isNaN(naohVolume) || isNaN(heatingTime) || isNaN(yieldPercentage) || biomassWeight <= 0 || naohVolume <= 0 || heatingTime <= 0 || yieldPercentage <= 0 || yieldPercentage > 100) {
+        document.getElementById('calculated-result').textContent = "Please enter valid values for all fields.";
+        return;
+      }
+
+      // Calculate the lignin extracted based on the yield percentage
+      const ligninExtracted = (biomassWeight * yieldPercentage) / 100;
+
+      // Display the result
+      document.getElementById('calculated-result').textContent = `Lignin Extracted: ${ligninExtracted.toFixed(2)} grams`;
+      document.getElementById('result').textContent = "Experiment completed! You can now see the result.";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electron Configuration</title>
+    <link rel="stylesheet" href="electron_configuration.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Electron Configuration</h1>
+
+        <section class="precautions">
+            <h3>Precautions:</h3>
+            <ul>
+                <li>Ensure correct atomic numbers for elements.</li>
+                <li>Understand the orbital filling rules (Aufbau principle, Pauli exclusion, Hund’s rule).</li>
+            </ul>
+        </section>
+
+        <section class="instructions">
+            <h3>Instructions:</h3>
+            <p>Enter the atomic number of an element and the electron configuration will be displayed based on the
+                atomic orbitals.</p>
+        </section>
+
+        <section class="experiment">
+            <h3>Start Experiment:</h3>
+            <button id="startExperiment">Start Experiment</button>
+
+            <div id="inputs" class="inputs" style="display:none;">
+                <label for="atomicNumber">Enter Atomic Number:</label>
+                <input type="number" id="atomicNumber" placeholder="Enter atomic number" required>
+                <button id="submitExperiment">Submit</button>
+            </div>
+
+            <div id="result" class="result" style="display:none;">
+                <p>Electron Configuration: <span id="electronConfig"></span></p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById("startExperiment").addEventListener("click", function () {
+            document.getElementById("inputs").style.display = "block"; // Show input fields
+            document.getElementById("result").style.display = "none"; // Hide result section initially
+        });
+
+        document.getElementById("submitExperiment").addEventListener("click", function () {
+            const atomicNumber = parseInt(document.getElementById("atomicNumber").value);
+            let result = "";
+
+            if (isNaN(atomicNumber) || atomicNumber < 1 || atomicNumber > 256) {
+                alert("Please enter a valid atomic number between 1 and 256.");
+                return;
+            }
+
+            // Electron configuration based on atomic number
+            if (atomicNumber === 1) {
+                result = "1s¹";
+            } else if (atomicNumber === 2) {
+                result = "1s²";
+            } else if (atomicNumber === 3) {
+                result = "1s² 2s¹";
+            } else if (atomicNumber === 4) {
+                result = "1s² 2s²";
+            } else if (atomicNumber === 5) {
+                result = "1s² 2s² 2p¹";
+            } else if (atomicNumber === 6) {
+                result = "1s² 2s² 2p²";
+            } else if (atomicNumber === 7) {
+                result = "1s² 2s² 2p³";
+            } else if (atomicNumber === 8) {
+                result = "1s² 2s² 2p⁴";
+            } else if (atomicNumber === 9) {
+                result = "1s² 2s² 2p⁵";
+            } else if (atomicNumber === 10) {
+                result = "1s² 2s² 2p⁶";
+            } else if (atomicNumber === 11) {
+                result = "1s² 2s² 2p⁶ 3s¹";
+            } else if (atomicNumber === 12) {
+                result = "1s² 2s² 2p⁶ 3s²";
+            } else if (atomicNumber === 13) {
+                result = "1s² 2s² 2p⁶ 3s² 3p¹";
+            } else if (atomicNumber === 14) {
+                result = "1s² 2s² 2p⁶ 3s² 3p²";
+            } else if (atomicNumber === 15) {
+                result = "1s² 2s² 2p⁶ 3s² 3p³";
+            } else if (atomicNumber === 16) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁴";
+            } else if (atomicNumber === 17) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁵";
+            } else if (atomicNumber === 18) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶";
+            } else if (atomicNumber === 19) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹";
+            } else if (atomicNumber === 20) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s²";
+            } else if (atomicNumber === 21) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹";
+            } else if (atomicNumber === 22) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d²";
+            } else if (atomicNumber === 23) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d³";
+            } else if (atomicNumber === 24) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁴";
+            } else if (atomicNumber === 25) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁵";
+            } else if (atomicNumber === 26) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁶";
+            } else if (atomicNumber === 27) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁷";
+            } else if (atomicNumber === 28) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁸";
+            } else if (atomicNumber === 29) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁹";
+            } else if (atomicNumber === 30) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰";
+            } else if (atomicNumber === 31) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p¹";
+            } else if (atomicNumber === 32) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p²";
+            } else if (atomicNumber === 33) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p³";
+            } else if (atomicNumber === 34) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁴";
+            } else if (atomicNumber === 35) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁵";
+            } else if (atomicNumber === 36) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶";
+            } else if (atomicNumber === 37) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s¹";
+            } else if (atomicNumber === 38) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s²";
+            }
+            else if (atomicNumber === 39) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹";
+            } else if (atomicNumber === 40) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d²";
+            } else if (atomicNumber === 41) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d³";
+            } else if (atomicNumber === 42) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d⁴";
+            } else if (atomicNumber === 43) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d⁵";
+            } else if (atomicNumber === 44) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d⁶";
+            } else if (atomicNumber === 45) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d⁷";
+            } else if (atomicNumber === 46) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d⁸";
+            } else if (atomicNumber === 47) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d⁹";
+            } else if (atomicNumber === 48) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰";
+            } else if (atomicNumber === 49) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p¹";
+            } else if (atomicNumber === 50) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p²";
+            } else if (atomicNumber === 51) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p³";
+            } else if (atomicNumber === 52) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁴";
+            } else if (atomicNumber === 53) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁵";
+            } else if (atomicNumber === 54) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶";
+            } else if (atomicNumber === 55) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s¹";
+            } else if (atomicNumber === 56) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s²";
+            } else if (atomicNumber === 57) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹";
+            } else if (atomicNumber === 58) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²";
+            } else if (atomicNumber === 59) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³";
+            } else if (atomicNumber === 60) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁴";
+            } else if (atomicNumber === 61) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁵";
+            } else if (atomicNumber === 62) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁶";
+            } else if (atomicNumber === 63) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁷";
+            } else if (atomicNumber === 64) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁸";
+            } else if (atomicNumber === 65) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁹";
+            } else if (atomicNumber === 66) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁰";
+            } else if (atomicNumber === 67) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹¹";
+            } else if (atomicNumber === 68) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹²";
+            } else if (atomicNumber === 69) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹³";
+            } else if (atomicNumber === 70) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁴";
+            } else if (atomicNumber === 71) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁵";
+            } else if (atomicNumber === 72) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁶";
+            } else if (atomicNumber === 73) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁷";
+            } else if (atomicNumber === 74) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁸";
+            } else if (atomicNumber === 75) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁹";
+            } else if (atomicNumber === 76) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²⁰";
+            } else if (atomicNumber === 77) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²¹";
+            } else if (atomicNumber === 78) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²²";
+            } else if (atomicNumber === 79) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²³";
+            } else if (atomicNumber === 80) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²⁴";
+            } else if (atomicNumber === 81) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²⁵";
+            } else if (atomicNumber === 82) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²⁶";
+            } else if (atomicNumber === 83) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²⁷";
+            } else if (atomicNumber === 84) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²⁸";
+            } else if (atomicNumber === 85) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f²⁹";
+            } else if (atomicNumber === 86) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³⁰";
+            } else if (atomicNumber === 87) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³¹";
+            } else if (atomicNumber === 88) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³²";
+            } else if (atomicNumber === 89) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³³";
+            } else if (atomicNumber === 90) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³⁴";
+            } else if (atomicNumber === 91) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³⁵";
+            } else if (atomicNumber === 92) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³⁶";
+            } else if (atomicNumber === 93) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³⁷";
+            } else if (atomicNumber === 94) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³⁸";
+            } else if (atomicNumber === 95) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f³⁹";
+            } else if (atomicNumber === 96) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁴⁰";
+            } else if (atomicNumber === 97) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁴¹";
+            } else if (atomicNumber === 98) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁴²";
+            } else if (atomicNumber === 99) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁴³";
+            } else if (atomicNumber === 100) {
+                result = "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f⁴⁴";
+            } else {
+                // Placeholder for elements beyond atomic number 38
+                result = `Electron configuration for atomic number ${atomicNumber} is not included in this example.`;
+            }
+
+            document.getElementById("electronConfig").textContent = result;
+            document.getElementById("result").style.display = "block"; // Show the result section
+        });
+    </script>
+</body>
+
+</html>

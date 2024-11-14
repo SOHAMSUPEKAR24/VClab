@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 9: UV Spectrophotometry</title>
+  <link rel="stylesheet" href="experiment9.css">
+</head>
+<body>
+  <header>
+    <h1>Experiment 9: Determine Concentration with UV Spectrophotometer</h1>
+  </header>
+
+  <!-- Precautions Section -->
+  <section id="precautions">
+    <h2>Precautions:</h2>
+    <ul>
+      <li>Wear protective eyewear and gloves when handling chemicals.</li>
+      <li>Ensure the UV spectrophotometer is properly calibrated.</li>
+      <li>Avoid touching the cuvette surface to prevent smudges.</li>
+      <li>Dispose of chemicals as per safety guidelines.</li>
+    </ul>
+    <button onclick="showInstructions()">I Agree to Precautions</button>
+  </section>
+
+  <!-- Instructions Section (Initially Hidden) -->
+  <section id="instructions" style="display: none;">
+    <h2>Instructions:</h2>
+    <ol>
+      <li>Prepare the sample solution to be measured.</li>
+      <li>Place the solution in the spectrophotometer cuvette.</li>
+      <li>Set the wavelength on the spectrophotometer to the desired measurement range.</li>
+      <li>Record the absorbance value displayed on the device.</li>
+    </ol>
+    <button onclick="startExperiment()">Proceed to Experiment</button>
+  </section>
+
+  <!-- Experiment Section (Initially Hidden) -->
+  <section id="experiment" style="display: none;">
+    <h2>Calculate Concentration</h2>
+    <ol>
+      <li>Enter absorbance: <input type="number" id="absorbance" placeholder="Absorbance value"></li>
+      <li>Enter molar absorptivity coefficient (L/mol·cm): <input type="number" id="coefficient" placeholder="Coefficient"></li>
+      <li>Enter path length (cm): <input type="number" id="path-length" placeholder="Path length"></li>
+      <li>Press "Calculate" to determine concentration.</li>
+    </ol>
+    <button onclick="calculateConcentration()">Calculate</button>
+    <p id="result"></p>
+  </section>
+
+  <script>
+    function showInstructions() {
+      document.getElementById('precautions').style.display = 'none';
+      document.getElementById('instructions').style.display = 'block';
+    }
+
+    function startExperiment() {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('experiment').style.display = 'block';
+    }
+
+    function calculateConcentration() {
+      const absorbance = parseFloat(document.getElementById('absorbance').value);
+      const coefficient = parseFloat(document.getElementById('coefficient').value);
+      const pathLength = parseFloat(document.getElementById('path-length').value);
+      const concentration = absorbance / (coefficient * pathLength);
+
+      if (!isNaN(concentration) && isFinite(concentration)) {
+        document.getElementById('result').textContent = `Concentration: ${concentration.toFixed(3)} mol/L`;
+      } else {
+        document.getElementById('result').textContent = "Please enter valid values.";
+      }
+    }
+  </script>
+</body>
+</html>

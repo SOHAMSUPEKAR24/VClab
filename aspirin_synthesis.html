@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspirin Synthesis</title>
+    <link rel="stylesheet" href="aspirin_synthesis.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Aspirin Synthesis Experiment</h1>
+
+        <section class="precautions">
+            <h3>Precautions:</h3>
+            <ul>
+                <li>Use gloves and goggles to handle chemicals.</li>
+                <li>Ensure a well-ventilated area for the reaction.</li>
+                <li>Follow proper disposal guidelines for any chemicals used.</li>
+                <li>Handle acetic anhydride with care as it is corrosive.</li>
+            </ul>
+        </section>
+
+        <section class="instructions">
+            <h3>Instructions:</h3>
+            <p>In this experiment, you will synthesize aspirin by reacting salicylic acid with acetic anhydride. Follow the instructions carefully and note down your observations.</p>
+        </section>
+
+        <section class="experiment">
+            <h3>Start Experiment:</h3>
+            <button id="startExperiment">Start Experiment</button>
+
+            <div id="inputs" class="inputs">
+                <label for="substance">Choose a catalyst:</label>
+                <select id="substance">
+                    <option value="catalyst1">Catalyst 1</option>
+                    <option value="catalyst2">Catalyst 2</option>
+                </select>
+
+                <label for="amount">Amount of Salicylic Acid (g):</label>
+                <input type="number" id="amount" placeholder="Enter amount" required>
+
+                <button id="submitExperiment">Submit</button>
+            </div>
+
+            <div id="result" class="result">
+                <p>Result: <span id="experimentResult"></span></p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById("startExperiment").addEventListener("click", function() {
+            document.getElementById("inputs").style.display = "block";
+        });
+
+        document.getElementById("submitExperiment").addEventListener("click", function() {
+            const catalyst = document.getElementById("substance").value;
+            const amount = document.getElementById("amount").value;
+            const result = `You have selected ${catalyst} and used ${amount} grams of Salicylic Acid for the synthesis.`;
+            document.getElementById("experimentResult").textContent = result;
+        });
+    </script>
+</body>
+</html>

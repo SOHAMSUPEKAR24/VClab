@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molecular Bonding and Geometry Experiments</title>
+    <link rel="stylesheet" href="molecular_bonding.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Molecular Bonding and Geometry Experiments</h1>
+
+        <section class="precautions">
+            <h3>Precautions:</h3>
+            <ul>
+                <li>Always wear safety goggles and gloves during the experiment.</li>
+                <li>Handle the chemicals with care as some may be corrosive.</li>
+                <li>Ensure a proper ventilation system when working with gases.</li>
+            </ul>
+        </section>
+
+        <section class="instructions">
+            <h3>Instructions:</h3>
+            <p>Choose a molecular experiment and follow the instructions to explore molecular bonding and geometry.</p>
+        </section>
+
+        <section class="experiment">
+            <h3>Start Experiment:</h3>
+            <button id="startExperiment">Start Experiment</button>
+
+            <div id="inputs" class="inputs">
+                <label for="experimentType">Choose an Experiment:</label>
+                <select id="experimentType">
+                    <option value="molecularGeometry">Molecular Geometry (VSEPR)</option>
+                    <option value="hybridization">Orbital Hybridization</option>
+                </select>
+
+                <div id="molecularGeometryInputs" class="experimentInputs">
+                    <label for="molecule">Choose a molecule:</label>
+                    <select id="molecule">
+                        <option value="h2o">Water (H2O)</option>
+                        <option value="co2">Carbon Dioxide (CO2)</option>
+                        <option value="nh3">Ammonia (NH3)</option>
+                    </select>
+
+                    <label for="bondAngle">Bond Angle (degrees):</label>
+                    <input type="number" id="bondAngle" placeholder="Enter bond angle" required>
+                </div>
+
+                <div id="hybridizationInputs" class="experimentInputs" style="display: none;">
+                    <label for="moleculeType">Choose a molecule for Hybridization:</label>
+                    <select id="moleculeType">
+                        <option value="methane">Methane (CH4)</option>
+                        <option value="ethylene">Ethylene (C2H4)</option>
+                        <option value="acetylene">Acetylene (C2H2)</option>
+                    </select>
+                    <label for="hybridization">Enter Hybridization Type (sp, sp2, sp3):</label>
+                    <input type="text" id="hybridization" placeholder="Enter Hybridization Type" required>
+                </div>
+
+                <button id="submitExperiment">Submit</button>
+            </div>
+
+            <div id="result" class="result">
+                <p>Result: <span id="experimentResult"></span></p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById("startExperiment").addEventListener("click", function() {
+            document.getElementById("inputs").style.display = "block";
+        });
+
+        document.getElementById("experimentType").addEventListener("change", function() {
+            const experimentType = document.getElementById("experimentType").value;
+            if (experimentType === "molecularGeometry") {
+                document.getElementById("molecularGeometryInputs").style.display = "block";
+                document.getElementById("hybridizationInputs").style.display = "none";
+            } else if (experimentType === "hybridization") {
+                document.getElementById("hybridizationInputs").style.display = "block";
+                document.getElementById("molecularGeometryInputs").style.display = "none";
+            }
+        });
+
+        document.getElementById("submitExperiment").addEventListener("click", function() {
+            const experimentType = document.getElementById("experimentType").value;
+            let result = "";
+            
+            if (experimentType === "molecularGeometry") {
+                const molecule = document.getElementById("molecule").value;
+                const angle = document.getElementById("bondAngle").value;
+                result = `You have selected ${molecule} with a bond angle of ${angle} degrees.`;
+            } else if (experimentType === "hybridization") {
+                const moleculeType = document.getElementById("moleculeType").value;
+                const hybridization = document.getElementById("hybridization").value;
+                result = `For ${moleculeType}, the hybridization is ${hybridization}.`;
+            }
+
+            document.getElementById("experimentResult").textContent = result;
+        });
+    </script>
+</body>
+</html>

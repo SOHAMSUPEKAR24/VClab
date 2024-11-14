@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 7: Interpretation of TGA Graph</title>
+  <link rel="stylesheet" href="experiment7.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For pie chart visualization -->
+  <style>
+    /* Simple styling for the substance selection box */
+    #experiment-data {
+      display: none;
+      margin-top: 20px;
+    }
+
+    /* For the start experiment button */
+    #start-experiment-btn {
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Experiment 7: Interpretation of TGA Graph</h1>
+  </header>
+
+  <!-- Precautions Section -->
+  <section id="precautions-section">
+    <h2>Precautions:</h2>
+    <ul>
+      <li>Ensure the TGA equipment is calibrated properly before use.</li>
+      <li>Handle the sample with care to avoid contamination.</li>
+      <li>Perform the experiment in a well-ventilated area.</li>
+      <li>Wear proper safety equipment (gloves, goggles, etc.) to avoid exposure to high temperatures.</li>
+    </ul>
+    <button id="agree-btn">I Agree</button>
+  </section>
+
+  <!-- Instructions Section (Initially Hidden) -->
+  <section id="instructions-section" style="display: none;">
+    <h2>Instructions:</h2>
+    <p>This experiment focuses on analyzing the mass loss during thermal decomposition using Thermogravimetric Analysis (TGA). Please follow the steps below:</p>
+    <ol>
+      <li>Enter the initial mass of the sample before heating.</li>
+      <li>Enter the final mass after heating.</li>
+      <li>Enter the heating temperature (in °C).</li>
+      <li>Click "Start Experiment" to calculate the mass loss and interpret the results.</li>
+    </ol>
+    <button id="start-experiment-btn" onclick="startExperiment()">Start Experiment</button>
+  </section>
+
+  <!-- Experiment Section (Initially Hidden) -->
+  <section id="experiment" style="display: none;">
+    <h2>Experiment in Progress</h2>
+    <p>Enter the data for the experiment:</p>
+
+    <!-- Experiment Data Input (Initially Hidden) -->
+    <div id="experiment-data" style="display: block;">
+      <p>Initial Mass (mg): <input type="number" id="initial-mass" placeholder="Enter initial mass in mg"></p>
+      <p>Final Mass (mg): <input type="number" id="final-mass" placeholder="Enter final mass in mg"></p>
+      <p>Heating Temperature (°C): <input type="number" id="heating-temp" placeholder="Enter heating temperature in °C"></p>
+      <button onclick="calculateTGA()">Calculate</button>
+    </div>
+
+    <!-- Results and Interpretation Section -->
+    <p id="result"></p>
+    <div id="interpretation"></div>
+    
+    <!-- Pie Chart Display -->
+    <canvas id="pieChart" width="400" height="400" style="display:none;"></canvas>
+  </section>
+
+  <script>
+    // Handle the agreement to precautions
+    document.getElementById('agree-btn').addEventListener('click', function() {
+      // Hide precautions and show instructions
+      document.getElementById('precautions-section').style.display = 'none';
+      document.getElementById('instructions-section').style.display = 'block';
+    });
+
+    // Show experiment section after "Start Experiment" button is clicked
+    function startExperiment() {
+      // Hide instructions and show experiment data input
+      document.getElementById('instructions-section').style.display = 'none';
+      document.getElementById('experiment').style.display = 'block';
+    }
+
+    // Function to calculate TGA and show result along with pie chart
+    function calculateTGA() {
+      const initial = parseFloat(document.getElementById('initial-mass').value);
+      const final = parseFloat(document.getElementById('final-mass').value);
+      const heatingTemp = parseFloat(document.getElementById('heating-temp').value);
+
+      if (isNaN(initial) || isNaN(final) || isNaN(heatingTemp)) {
+        document.getElementById('result').textContent = "Please enter valid values for mass and temperature.";
+        return;
+      }
+
+      const massLoss = ((initial - final) / initial) * 100;
+
+      document.getElementById('result').textContent = `Mass loss: ${massLoss.toFixed(2)}% at ${heatingTemp} °C`;
+
+      // Interpretation section
+      let interpretationText = "Interpretation of TGA Data: ";
+      if (massLoss < 10) {
+        interpretationText += "The substance is thermally stable and loses little mass.";
+      } else if (massLoss >= 10 && massLoss < 50) {
+        interpretationText += "The substance has moderate thermal stability, showing significant weight loss.";
+      } else {
+        interpretationText += "The substance is highly thermally unstable, losing a large portion of its mass.";
+      }
+
+      document.getElementById('interpretation').textContent = interpretationText;
+
+      // Show the pie chart
+      const ctx = document.getElementById('pieChart').getContext('2d');
+      document.getElementById('pieChart').style.display = 'block';
+      
+      const data = {
+        labels: ['Mass Loss', 'Remaining Mass'],
+        datasets: [{
+          data: [massLoss, 100 - massLoss],
+          backgroundColor: ['#ff0000', '#00ff00'],
+          borderColor: ['#ff0000', '#00ff00'],
+          borderWidth: 1
+        }]
+      };
+
+      const config = {
+        type: 'pie',
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            tooltip: {
+              callbacks: {
+                label: function(tooltipItem) {
+                  return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + '%';
+                }
+              }
+            }
+          }
+        }
+      };
+
+      const pieChart = new Chart(ctx, config);
+    }
+  </script>
+</body>
+</html>

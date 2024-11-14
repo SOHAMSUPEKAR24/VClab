@@ -1,0 +1,152 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, rgba(10, 10, 50, 1) 0%, rgba(0, 204, 255, 1) 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 16px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #ff7043;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+#experiment {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+#experiment h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #dcdcdc;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#experiment p {
+    margin-bottom: 25px;
+    color: #f1f1f1;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+#experiment ol {
+    text-align: left;
+    margin-bottom: 25px;
+    color: #f1f1f1;
+}
+
+#experiment li {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+
+#experiment li::before {
+    content: "✔️";  /* Add a checkmark before each step */
+    margin-right: 10px;
+}
+
+#experiment form {
+    margin-top: 30px;
+    text-align: left;
+}
+
+#experiment form label {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    display: block;
+    color: #f1f1f1;
+}
+
+#experiment form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+}
+
+#experiment form input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+button {
+    background-color: #ff7043;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff5722;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #f2f2f2;
+    font-weight: bold;
+}
+
+#calculated-result {
+    margin-top: 10px;
+    font-size: 1.3rem;
+    color: #81c784;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    #experiment {
+        padding: 25px;
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    #experiment h2 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorimetry Experiment</title>
+    <link rel="stylesheet" href="calorimetry_experiment.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calorimetry Experiment</h1>
+
+        <section class="precautions">
+            <h3>Precautions:</h3>
+            <ul>
+                <li>Ensure proper handling of hot materials to avoid burns.</li>
+                <li>Always wear safety goggles and gloves during the experiment.</li>
+                <li>Be cautious when mixing chemicals and handle them with care.</li>
+                <li>Use a thermometer carefully to measure temperature changes.</li>
+            </ul>
+        </section>
+
+        <section class="instructions">
+            <h3>Instructions:</h3>
+            <p>In this experiment, we will measure the heat exchanged during a chemical reaction. Choose a substance and add it to the calorimeter. Record the initial temperature and then react it with another substance.</p>
+        </section>
+
+        <section class="experiment">
+            <h3>Start Experiment:</h3>
+            <button id="startExperiment">Start Experiment</button>
+
+            <div id="inputs" class="inputs">
+                <label for="substance">Choose a substance:</label>
+                <select id="substance">
+                    <option value="substance1">Substance 1</option>
+                    <option value="substance2">Substance 2</option>
+                    <option value="substance3">Substance 3</option>
+                </select>
+
+                <label for="temperature">Initial Temperature (°C):</label>
+                <input type="number" id="temperature" placeholder="Enter temperature" required>
+                
+                <button id="submitExperiment">Submit</button>
+            </div>
+
+            <div id="result" class="result">
+                <p>Result: <span id="experimentResult"></span></p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById("startExperiment").addEventListener("click", function() {
+            document.getElementById("inputs").style.display = "block";
+        });
+
+        document.getElementById("submitExperiment").addEventListener("click", function() {
+            const substance = document.getElementById("substance").value;
+            const temperature = document.getElementById("temperature").value;
+            const result = `You have selected ${substance} with an initial temperature of ${temperature}°C.`;
+            document.getElementById("experimentResult").textContent = result;
+        });
+    </script>
+</body>
+</html>

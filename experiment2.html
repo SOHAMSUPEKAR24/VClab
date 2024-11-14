@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 2: Conductometric Titration</title>
+  <link rel="stylesheet" href="experiment2.css">
+</head>
+<body>
+  <header>
+    <h1>Experiment 2: Titration of Weak and Strong Acids with Strong Base</h1>
+  </header>
+  
+  <!-- Precautions Section -->
+  <section id="precautions-section">
+    <h2>Precautions:</h2>
+    <ul>
+      <li>Always wear safety goggles and gloves during the experiment.</li>
+      <li>Handle all chemicals with care and follow safety guidelines.</li>
+      <li>Ensure the titrant and analyte are accurately prepared.</li>
+      <li>Work in a well-ventilated area and dispose of chemicals safely.</li>
+    </ul>
+    <button id="agree-btn">I Agree</button>
+  </section>
+
+  <!-- Instructions Section (Initially Hidden) -->
+  <section id="instructions-section" style="display: none;">
+    <h2>Instructions:</h2>
+    <p>Follow the steps below to perform the titration:</p>
+    <ol>
+      <li>Measure the initial conductivity of the solution.</li>
+      <li>Measure the final conductivity after titration.</li>
+      <li>Calculate the change in conductivity to analyze the reaction.</li>
+    </ol>
+    <button id="start-experiment-btn" onclick="startExperiment()">Start Experiment</button>
+  </section>
+
+  <!-- Experiment Section (Initially Hidden) -->
+  <section id="experiment" style="display: none;">
+    <h2>Experiment in Progress</h2>
+    <p>Follow the steps below to measure and calculate conductivity:</p>
+    <ol>
+      <li>Enter initial conductivity (mS/cm): <input type="number" id="initial-conductivity" placeholder="mS/cm"></li>
+      <li>Enter final conductivity (mS/cm): <input type="number" id="final-conductivity" placeholder="mS/cm"></li>
+      <li>Press "Calculate" to determine the change in conductivity.</li>
+    </ol>
+    <button class="calculate-btn" onclick="calculateConductivity()">Calculate</button>
+    <p id="result"></p>
+  </section>
+
+  <script>
+    // Handle the agreement to precautions
+    document.getElementById('agree-btn').addEventListener('click', function() {
+      // Hide precautions and show instructions
+      document.getElementById('precautions-section').style.display = 'none';
+      document.getElementById('instructions-section').style.display = 'block';
+    });
+
+    // Start the experiment when the user clicks "Start Experiment"
+    function startExperiment() {
+      // Hide instructions and show experiment section
+      document.getElementById('instructions-section').style.display = 'none';
+      document.getElementById('experiment').style.display = 'block';
+    }
+
+    // Function to calculate conductivity change
+    function calculateConductivity() {
+      const initial = parseFloat(document.getElementById('initial-conductivity').value);
+      const final = parseFloat(document.getElementById('final-conductivity').value);
+      const change = final - initial;
+
+      if (!isNaN(change)) {
+        document.getElementById('result').textContent = `Change in conductivity: ${change.toFixed(2)} mS/cm`;
+      } else {
+        document.getElementById('result').textContent = "Please enter valid values for conductivity.";
+      }
+    }
+  </script>
+</body>
+</html>

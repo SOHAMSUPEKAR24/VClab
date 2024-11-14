@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment 8: Electroplating Copper on Iron</title>
+  <link rel="stylesheet" href="experiment8.css">
+  <style>
+    /* Styling for visibility and layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+
+    header h1 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    section {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #experiment-data {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #result {
+      font-weight: bold;
+      color: #4CAF50;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Experiment 8: Electroplating Copper on Iron Plate</h1>
+  </header>
+
+  <!-- Precautions Section -->
+  <section id="precautions-section">
+    <h2>Precautions:</h2>
+    <ul>
+      <li>Wear protective gloves and goggles to avoid contact with chemicals.</li>
+      <li>Ensure the copper sulfate solution is prepared properly.</li>
+      <li>Maintain the temperature of the solution as recommended (usually 25°C to 30°C).</li>
+      <li>Ensure the power supply is working correctly to apply a constant current.</li>
+    </ul>
+    <button id="agree-btn">I Agree</button>
+  </section>
+
+  <!-- Instructions Section (Initially Hidden) -->
+  <section id="instructions-section" style="display: none;">
+    <h2>Instructions:</h2>
+    <p>This experiment involves electroplating copper onto an iron plate. Please follow these steps:</p>
+    <ol>
+      <li>Immerse the iron plate in the copper sulfate solution.</li>
+      <li>Connect the iron plate to the cathode and a copper rod to the anode.</li>
+      <li>Set current to 0.5A and apply for 30 minutes.</li>
+      <li>Observe the copper coating on the iron plate after the process completes.</li>
+    </ol>
+    <button id="start-experiment-btn">Start Experiment</button>
+  </section>
+
+  <!-- Experiment Data Section (Initially Hidden) -->
+  <section id="experiment" style="display: none;">
+    <h2>Experiment Data</h2>
+    <p>Please input the following details to proceed with the experiment:</p>
+
+    <div id="experiment-data">
+      <label for="current-input">Enter current (in Amperes, A):</label>
+      <input type="number" id="current-input" placeholder="Enter current in A" required>
+      <br><br>
+      <label for="time-input">Enter time (in minutes):</label>
+      <input type="number" id="time-input" placeholder="Enter time in minutes" required>
+      <br><br>
+      <button onclick="startElectroplating()">Start Electroplating</button>
+    </div>
+
+    <!-- Result Display -->
+    <div id="result"></div>
+  </section>
+
+  <script>
+    // Show instructions when user agrees to precautions
+    document.getElementById('agree-btn').addEventListener('click', function() {
+      document.getElementById('precautions-section').style.display = 'none';
+      document.getElementById('instructions-section').style.display = 'block';
+    });
+
+    // Show experiment data section when user starts experiment
+    document.getElementById('start-experiment-btn').addEventListener('click', function() {
+      document.getElementById('instructions-section').style.display = 'none';
+      document.getElementById('experiment').style.display = 'block';
+    });
+
+    // Handle the electroplating process and calculate results
+    function startElectroplating() {
+      const current = parseFloat(document.getElementById('current-input').value);
+      const time = parseFloat(document.getElementById('time-input').value);
+      
+      // Ensure valid inputs
+      if (isNaN(current) || isNaN(time) || current <= 0 || time <= 0) {
+        alert("Please enter valid positive values for current and time.");
+        return;
+      }
+
+      // Simulate the electroplating process and calculate results
+      const platingAmount = (current * time) * 0.5;  // Example formula
+
+      // Display results based on calculated plating amount
+      let resultText = `The electroplating process was successful! Copper plating amount: ${platingAmount.toFixed(2)} grams.`;
+
+      if (platingAmount < 1) {
+        resultText += " The plating is very light.";
+      } else if (platingAmount >= 1 && platingAmount < 5) {
+        resultText += " The plating is moderate.";
+      } else {
+        resultText += " The plating is thick and well-developed.";
+      }
+
+      document.getElementById('result').textContent = resultText;
+    }
+  </script>
+</body>
+</html>

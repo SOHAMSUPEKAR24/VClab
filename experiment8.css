@@ -1,0 +1,124 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #ffcc00;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#experiment {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+#experiment h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #ffcc00;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#experiment ol {
+    text-align: left;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+#experiment li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #f1f1f1;
+}
+
+#experiment p,
+#experiment label {
+    font-size: 1rem;
+    color: #f1f1f1;
+    margin-bottom: 15px;
+}
+
+#experiment input[type="number"] {
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: calc(100% - 20px);
+    border-radius: 5px;
+    border: 1px solid #3498db;
+    outline: none;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#result {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #c1ffc1;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    #experiment {
+        padding: 20px;
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    #experiment h2 {
+        font-size: 1.4rem;
+    }
+
+    #experiment li, #experiment label, #result {
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

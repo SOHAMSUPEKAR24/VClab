@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiments - Virtual Chemistry Lab</title>
+  <link rel="stylesheet" href="experiments.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Fixed Navigation Bar -->
+  <nav class="navbar glass-effect">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="experiments.html">Experiments</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Experiments Section -->
+  <section class="experiments-page">
+    <h2>Explore Our Chemistry Experiments</h2>
+    <p class="intro-text">Browse through a range of chemistry experiments, each designed to help you understand core concepts through hands-on virtual lab work. Use the search bar below to filter experiments by name.</p>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input type="text" id="searchInput" onkeyup="filterExperiments()" placeholder="Search experiments..." class="search-bar">
+    </div>
+
+    <!-- Experiment List -->
+    <div class="experiment-list-container">
+      <div class="experiment-list">
+        <h3>Experiment Index</h3>
+        <ul id="experimentList">
+          <li><a href="experiment1.html">Determine Strength of Strong Acid (pH Meter)</a></li>
+          <li><a href="experiment2.html">Titration of Weak and Strong Acid with Strong Base (Conductometry)</a></li>
+          <li><a href="experiment3.html">Determine Water Hardness (EDTA Method)</a></li>
+          <li><a href="experiment4.html">Determine Water Alkalinity</a></li>
+          <li><a href="experiment5.html">Extract Lignin from Biomass Waste</a></li>
+          <li><a href="experiment6.html">Optimize Bio-Ethanol Production (DOE Software)</a></li>
+          <li><a href="experiment7.html">Interpretation of TGA Graph</a></li>
+          <li><a href="experiment9.html">Determine Unknown Sample Concentration (UV Spectrophotometer)</a></li>
+          <li><a href="experiment10.html">Identify Functional Groups (IR Spectrum)</a></li>
+
+          <!-- Added experiments -->
+          <li><a href="electron_pair_repulsion.html">Electron Pair Repulsion (VSEPR Theory)</a></li>
+          <li><a href="electron_configuration.html">Electron Configuration</a></li>
+          <li><a href="calorimetry_experiment.html">Calorimetry Experiment</a></li>
+          <li><a href="aspirin_synthesis.html">Synthesis of Aspirin</a></li>
+          <li><a href="molecular_bonding.html">Molecular Bonding and Geometry</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experiment-details">
+      <!-- Experiment descriptions for context; can be removed if each experiment has its own details page. -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Virtual Chemistry Lab © 2024 | Learning through virtual experiences. Always follow safety guidelines.</p>
+  </footer>
+
+  <script src="search.js"></script>
+</body>
+</html>
