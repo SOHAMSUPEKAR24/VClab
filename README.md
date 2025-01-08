@@ -1,6 +1,4 @@
-Here’s a professional and engaging context for your GitHub README file:
-
-Virtual Chemistry Lab
+                                                         **Virtual Chemistry Lab**
 Welcome to Virtual Chemistry Lab, an interactive and user-friendly online platform designed to simulate a real-world chemistry laboratory experience. This tool allows students, educators, and chemistry enthusiasts to conduct virtual experiments, learn concepts, and explore chemical reactions safely and conveniently.
 
 🌐 Try it now: [Virtual Chemistry Lab] https://vclab-production.up.railway.app/
